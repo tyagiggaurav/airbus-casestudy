@@ -7,6 +7,7 @@ pipeline {
           sh 'pwd'
           sh 'docker build -t $CALCULATION_SERVICE_IMAGE:latest .'
           sh 'docker tag $CALCULATION_SERVICE_IMAGE:latest $ECR_ID/$CALCULATION_SERVICE_IMAGE:latest'
+          sh 'docker image prune -f'
         }
 
       }
