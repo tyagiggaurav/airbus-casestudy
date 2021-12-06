@@ -21,5 +21,9 @@ pipeline {
     ECR_ID = '142198642907.dkr.ecr.us-west-1.amazonaws.com'
     CALCULATION_SERVICE_IMAGE = 'gaurav2-casestudy-calculation-service'
     ECR_CREDENTIALS = credentials('ecr-credentials')
+    VALIDATION_RESPONSE_DAEMON_IMAGE = 'gauravv2-casestudy-creditcard-identity-verification-response-daemon'
+    EMAIL_SERVICE_IMAGE = 'gauravv2-casestudy-email-service'
+    CREDITCARD_SERVICE_IMAGE = 'gauravv2-casestudy-creditcard-service'
+    IDENTITY_VERIFICATION_SERVICE_IMAGE = 'ramkumarv2-casestudy-identity-verification-service'
   }
 }
