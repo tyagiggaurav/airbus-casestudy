@@ -19,12 +19,12 @@ pipeline {
     stage('Prepare Validation Response Daemon') {
       steps {
         dir(path: 'source/creditcard-identity-verification-response-daemon') {
-          sh 'sh \'docker build -t $VALIDATION_RESPONSE_DAEMON_IMAGE:latest -t $VALIDATION_RESPONSE_DAEMON_IMAGE:$BUILD_NUMBER .\''
-          sh 'sh \'docker tag $VALIDATION_RESPONSE_DAEMON_IMAGE:latest $ECR_ID/$VALIDATION_RESPONSE_DAEMON_IMAGE:latest\''
-          sh 'sh \'docker login --username $ECR_CREDENTIALS_USR --password $ECR_CREDENTIALS_PSW $ECR_ID\''
-          sh ' sh \'docker image prune -f\''
-          sh ' sh \'docker push $ECR_ID/$VALIDATION_RESPONSE_DAEMON_IMAGE:latest\''
-          sh ' sh \'docker logout\''
+          sh 'docker build -t $VALIDATION_RESPONSE_DAEMON_IMAGE:latest -t $VALIDATION_RESPONSE_DAEMON_IMAGE:$BUILD_NUMBER .'
+          sh 'docker tag $VALIDATION_RESPONSE_DAEMON_IMAGE:latest $ECR_ID/$VALIDATION_RESPONSE_DAEMON_IMAGE:latest'
+          sh 'docker login --username $ECR_CREDENTIALS_USR --password $ECR_CREDENTIALS_PSW $ECR_ID'
+          sh 'docker image prune -f'
+          sh 'docker push $ECR_ID/$VALIDATION_RESPONSE_DAEMON_IMAGE:latest'
+          sh 'docker logout'
         }
 
       }
