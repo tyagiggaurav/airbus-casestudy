@@ -19,7 +19,7 @@ pipeline {
   }
   environment {
     ECR_ID = '142198642907..dkr.ecr.us-west-1.amazonaws.com'
-    CALCULATION_SERVICE_IMAGE = 'gaurav-casestudy-calculation-service'
+    CALCULATION_SERVICE_IMAGE = 'gaurav2-casestudy-calculation-service'
     ECR_CREDENTIALS = 'credentials(\'ecr-credentials\')'
   }
 }
