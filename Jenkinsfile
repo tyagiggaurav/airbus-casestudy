@@ -29,21 +29,21 @@ pipeline {
 
       }
     }
-    
-    stage('Prepare Credit Card Service') {
-          steps {
-            dir(path: 'source/creditcard-service') {
-              sh 'pwd'
-              sh 'docker build -t $CREDITCARD_SERVICE_IMAGE:latest -t $CREDITCARD_SERVICE_IMAGE:$BUILD_NUMBER .'
-              sh 'docker tag $CREDITCARD_SERVICE_IMAGE:latest $ECR_ID/$CREDITCARD_SERVICE_IMAGE:latest'
-              sh 'docker login --username $ECR_CREDENTIALS_USR --password $ECR_CREDENTIALS_PSW $ECR_ID'
-              sh 'docker image prune -f'
-              sh 'docker push $ECR_ID/$CREDITCARD_SERVICE_IMAGE:latest'
-              sh 'docker logout'
-            }
 
-          }
+    stage('Prepare Credit Card Service') {
+      steps {
+        dir(path: 'source/creditcard-service') {
+          sh 'pwd'
+          sh 'docker build -t $CREDITCARD_SERVICE_IMAGE:latest -t $CREDITCARD_SERVICE_IMAGE:$BUILD_NUMBER .'
+          sh 'docker tag $CREDITCARD_SERVICE_IMAGE:latest $ECR_ID/$CREDITCARD_SERVICE_IMAGE:latest'
+          sh 'docker login --username $ECR_CREDENTIALS_USR --password $ECR_CREDENTIALS_PSW $ECR_ID'
+          sh 'docker image prune -f'
+          sh 'docker push $ECR_ID/$CREDITCARD_SERVICE_IMAGE:latest'
+          sh 'docker logout'
         }
+
+      }
+    }
 
     stage('Prepare Email Service') {
       steps {
