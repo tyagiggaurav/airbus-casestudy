@@ -3,7 +3,10 @@ pipeline {
   stages {
     stage('Prepare Calculation Service') {
       steps {
-        echo 'Preparing Calculation Service Image ...'
+        dir(path: 'source/calculation-offer-service/CalculationServiceAPISolution') {
+          sh 'pwd'
+        }
+
       }
     }
 
