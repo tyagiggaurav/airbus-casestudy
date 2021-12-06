@@ -45,6 +45,21 @@ pipeline {
       }
     }
 
+    stage('Prepare Identity Verification Service') {
+      steps {
+        dir(path: 'source/identity-verification-service') {
+          sh 'pwd'
+          sh 'docker build -t $IDENTITY_VERIFICATION_SERVICE_IMAGE:latest -t $IDENTITY_VERIFICATION_SERVICE_IMAGE:$BUILD_NUMBER .'
+          sh 'docker tag $IDENTITY_VERIFICATION_SERVICE_IMAGE:latest $ECR_ID/$IDENTITY_VERIFICATION_SERVICE_IMAGE:latest'
+          sh 'sh \'docker login --username $ECR_CREDENTIALS_USR --password $ECR_CREDENTIALS_PSW $ECR_ID\''
+          sh 'sh \'docker image prune -f\''
+          sh ' sh \'docker push $ECR_ID/$IDENTITY_VERIFICATION_SERVICE_IMAGE:latest\''
+          sh ' sh \'docker logout\''
+        }
+
+      }
+    }
+
   }
   environment {
     ECR_ID = '142198642907.dkr.ecr.us-west-1.amazonaws.com'
